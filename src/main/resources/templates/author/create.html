@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo mới tác giả</title>
+    <style>
+        input, select {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+<h1>Tạo mới tác giả</h1>
+<br>
+<form th:action="@{/author/save}" th:object="${author}" method="post">
+    <table >
+        <thead>
+        <td style="width: 200px">Tên</td>
+        <td style="width: 300px">Địa chỉ</td>
+        <td style="width: 100px">Giới tính</td>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input th:field="*{name}"></input></td>
+            <td><input th:field="*{address}"></input></td>
+            <td>
+                <select th:field="*{gender}">
+                    <option value="1">Nam</option>
+                    <option value="0">Nư</option>
+                </select>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <button style="margin: 10px" >Tạo mới</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Account</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<style>
+    .sua {
+        margin-left: 5px;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 34px;
+    }
+</style>
+<div  class="text-bg-primary p-3 title">Danh Sách Account</div >
+<hr>
+<div class="container">
+    <table class=" table  table-dark table-striped md-3">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Avatar</th>
+            <th scope="col">Password</th>
+            <th scope="col">Address</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="account: ${accounts}">
+            <tr>
+                <td th:text="${account.ID}"></td>
+                <td th:text="${account.email}"></td>
+                <td th:text="${account.avatar}"></td>
+                <td th:text="${account.pass}"></td>
+                <td th:text="${account.address}"></td>
+                <td th:if="${account.status==1}">Kích Hoạt</td>
+                <td th:if="${account.status==0}">Tạm dừng</td>
+                <!--                        <td th:if="${author.gender == 0}">Nư</td>-->
+                <td>
+                    <a  th:href="@{'/account/delete?id=' + ${account.ID}}">  <button type="button" class="btn btn-danger ">Xóa</button> </a>
+                    <a  th:href="@{'/account/get/' + ${account.ID}}">
+                        <button type="button" class="btn btn-primary sua">Sửa</button></a>
+
+
+                </td>
+            </tr>
+        </th:block>
+
+       </tbody>
+    </table>
+</div>
+</body>
+</html>
